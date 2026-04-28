@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Запись на прием{% endblock %}
+
+{% block content %}
+<div class="booking-wrapper">
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img">
+        </div>
+        <a href="/" class="back-link">← Вернуться на главную</a>
+    </div>
+
+    <div class="card form-card">
+        <div class="block-header">
+            <h2>Запишите своего питомца на приём</h2>
+            <p>Наш администратор свяжется с вами для согласования времени визита.</p>
+        </div>
+
+        <form id="appointmentForm">
+            <div class="form-group">
+                <label for="petOwnerName">Имя *</label>
+                <input type="text" id="petOwnerName" name="ownerName" placeholder="Ваше имя" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Номер телефона *</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 (___) ___-__-__" required>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceDirection">Выберите направление услуги</label>
+                <select id="serviceDirection" name="service">
+                    <option value="Терапия">Терапия</option>
+                    <option value="Хирургия">Хирургия</option>
+                    <option value="Вакцинация">Вакцинация</option>
+                    <option value="Стоматология">Стоматология</option>
+                    <option value="УЗИ-диагностика">УЗИ-диагностика</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="appointmentDate">Выберите дату</label>
+                <input type="date" id="appointmentDate" name="preferredDate" required>
+            </div>
+
+            <div class="form-group checkbox">
+                <input type="checkbox" id="privacyPolicy" name="privacyConsent" required>
+                <label for="privacyPolicy">Я соглашаюсь с условиями политики конфиденциальности</label>
+            </div>
+
+            <button type="submit" class="btn-submit">Отправить</button>
+        </form>
+
+        <div id="formMessage"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const form = document.getElementById('appointmentForm');
+    const messageDiv = document.getElementById('formMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            ownerName: document.getElementById('petOwnerName').value.trim(),
+            phoneNumber: document.getElementById('phoneNumber').value.trim(),
+            service: document.getElementById('serviceDirection').value,
+            preferredDate: document.getElementById('appointmentDate').value,
+            privacyConsent: document.getElementById('privacyPolicy').checked
+        };
+
+        // Валидация
+        if (!formData.ownerName || !formData.phoneNumber || !formData.preferredDate) {
+            showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+            return;
+        }
+
+        if (!formData.privacyConsent) {
+            showMessage('Необходимо согласие с политикой конфиденциальности', 'error');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/appointments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                showMessage(`✅ Спасибо, ${formData.ownerName}! Ваша заявка принята. Администратор свяжется с вами.`, 'success');
+                form.reset();
+            } else {
+                showMessage(result.error || 'Ошибка при отправке', 'error');
+            }
+        } catch (error) {
+            showMessage('Ошибка сети. Попробуйте позже.', 'error');
+        }
+    });
+
+    function showMessage(text, type) {
+        messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+        setTimeout(() => {
+            messageDiv.innerHTML = '';
+        }, 5000);
+    }
+
+    // Установка минимальной даты (сегодня)
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('appointmentDate').min = today;
+</script>
+{% endblock %}

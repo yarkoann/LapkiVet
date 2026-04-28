@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "ownerName": "Тест",
+    "phoneNumber": "+79141001212",
+    "service": "Терапия",
+    "preferredDate": "2026-04-30",
+    "privacyConsent": true,
+    "createdAt": "2026-04-28T11:51:58.267579",
+    "status": "new"
+  },
+  {
+    "id": 2,
+    "ownerName": "Тест2",
+    "phoneNumber": "+79141001210",
+    "service": "Вакцинация",
+    "preferredDate": "2026-05-06",
+    "privacyConsent": true,
+    "createdAt": "2026-04-28T11:52:42.511047",
+    "status": "new"
+  }
+]

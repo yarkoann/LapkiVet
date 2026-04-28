@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<!-- Навигация -->
+<div class="navbar">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img">
+    </div>
+    <div class="nav-links">
+        <a href="#">О клинике</a>
+        <a href="#">Акции</a>
+        <a href="#">Услуги</a>
+        <a href="#">Контакты</a>
+    </div>
+</div>
+
+<!-- Hero секция -->
+<div class="card hero section-gap">
+    <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
+    <h1>Круглосуточная ветеринарная клиника</h1>
+    <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
+    <a href="/booking" class="btn btn-primary">Записаться на прием</a>
+</div>
+
+<!-- Блоки услуг -->
+<div class="row section-gap">
+    <div class="col">
+        <div class="card service-block">
+            <h3>Страхование жизни на операциях*</h3>
+            <p>Проводим операции с финансовой ответственностью за жизнь животного с гарантией результата.</p>
+            <a href="#" class="btn btn-whatsapp">Связаться в WhatsApp</a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card service-block">
+            <h3>Скорая помощь</h3>
+            <p>Животное в тяжелом состоянии и нужна экстренная помощь.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Преимущества -->
+<div class="card advantages section-gap">
+    <div class="block-header">
+        <h2>Почему LapkiVet?</h2>
+    </div>
+    <div class="advantages-grid">
+        <div class="advantage-item">
+            <h3>🕐 24/7</h3>
+            <p>Круглосуточный прием и стационар. В любое время суток мы рядом.</p>
+        </div>
+        <div class="advantage-item">
+            <h3>🔬 Современное оборудование</h3>
+            <p>Экспресс-лаборатория, цифровой рентген, УЗИ экспертного класса.</p>
+        </div>
+        <div class="advantage-item">
+            <h3>❤️ Забота</h3>
+            <p>Дружелюбный персонал и комфортные условия для питомцев.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 LapkiVet — Ветеринарная клиника в Санкт-Петербурге. Забота о здоровье ваших питомцев.</p>
+</footer>
+{% endblock %}
