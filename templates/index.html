@@ -3,43 +3,47 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-<!-- Навигация -->
-<div class="navbar">
-    <div class="logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img" onerror="this.src='https://placehold.co/200x60/2c5282/white?text=LapkiVet'">
-    </div>
-    <div class="nav-links">
-        <a href="#">О клинике</a>
-        <a href="#">Акции</a>
-        <a href="#">Услуги</a>
-        <a href="#">Контакты</a>
-    </div>
-    <a href="#" class="btn-whatsapp-nav">Связаться в WhatsApp</a>
-</div>
 
-<!-- Hero секция: слева текст, справа слайдер с блоками -->
-<div class="hero-wrapper">
-    <!-- Левая часть - текст -->
+
+
+<!-- HERO -->
+<section class="hero-wrapper">
     <div class="hero-left">
-        <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
-        <h1>Круглосуточная ветеринарная клиника</h1>
-        <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
-        <a href="/booking" class="btn btn-primary">Записаться на прием</a>
-    </div>
-
-    <!-- Правая часть - слайдер с блоками услуг поверх -->
-    <div class="hero-right">
-        <div class="slider-with-cards">
-            <!-- Слайдер -->
-            <div class="slider-container">
-                <div class="image-slider">
-                    <div class="slider-track" id="sliderTrack">
-                        <!-- Фото будут загружены динамически через JavaScript -->
-                    </div>
-                </div>
+        <dif class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img">
+            </div>
+            <div class="nav-links">
+                <a href="#">О клинике</a>
+                <a href="#">Акции</a>
+                <a href="#">Услуги</a>
+                <a href="#">Контакты</a>
             </div>
 
-            <!-- Карточки услуг поверх слайдера -->
+        </dif>
+
+
+        <div class="address-tag">
+            <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/></svg>
+            г. Санкт-Петербург, пр. Науки 17к2
+        </div>
+        <h1>Круглосуточная ветеринарная клиника</h1>
+        <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
+        <a href="/booking" class="btn-primary">Записаться на прием</a>
+    </div>
+
+
+
+
+    <div class="hero-right">
+        <div class="slider-with-cards">
+            <div class="image-slider">
+                <a href="#" class="btn-whatsapp-nav">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.678-.487-5.226-1.342l-.374-.22-3.882 1.013 1.036-3.786-.243-.389A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                Связаться в WhatsApp
+                </a>
+                <div class="slider-track" id="sliderTrack"></div>
+            </div>
             <div class="overlay-cards">
                 <div class="overlay-card">
                     <h3>Страхование жизни на операциях*</h3>
@@ -52,80 +56,239 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Преимущества -->
-<div class="card advantages section-gap">
-    <div class="block-header">
-        <h2>Почему LapkiVet?</h2>
-        <p class="subtitle">Мы заботимся о ваших питомцах как о своих</p>
+<!-- О КЛИНИКЕ -->
+<section class="section-about">
+    <div class="section-label">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/paw.png') }}" alt="Paw" class="logo-img">
+        </div>
+        ВЕТЕРИНАРНАЯ КЛИНИКА С ДУШОЙ
     </div>
-    <div class="advantages-grid">
-        <div class="advantage-item">
-            <div class="advantage-icon">🕐</div>
-            <h3>24/7</h3>
-            <p>Круглосуточный прием и стационар. В любое время суток мы рядом.</p>
+    <h2>Забота о животных — это не только профессия, но и призвание. <strong>В нашей клинике созданы все условия для того, чтобы ваш питомец чувствовал себя как дома.</strong></h2>
+    <p class="about-subtitle">Наш дружелюбный персонал с радостью окажет<br>любую помощь и поддержку.</p>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-num">&gt;1000 пациентов</div>
+            <div class="stat-desc">наши специалисты оперируют в клинике ежегодно</div>
         </div>
-        <div class="advantage-item">
-            <div class="advantage-icon">🔬</div>
-            <h3>Современное оборудование</h3>
-            <p>Экспресс-лаборатория, цифровой рентген, УЗИ экспертного класса.</p>
+        <div class="stat-card">
+            <div class="stat-num">&gt;10 лет</div>
+            <div class="stat-desc">помогаем питомцам быть здоровыми</div>
         </div>
-        <div class="advantage-item">
-            <div class="advantage-icon">❤️</div>
-            <h3>Забота</h3>
-            <p>Дружелюбный персонал и комфортные условия для питомцев.</p>
-        </div>
-        <div class="advantage-item">
-            <div class="advantage-icon">🎓</div>
-            <h3>Опытные врачи</h3>
-            <p>Специалисты с 10+ годами практики в ветеринарии.</p>
+        <div class="stat-card">
+            <div class="stat-num">&gt;30 ветеринаров</div>
+            <div class="stat-desc">квалифицированные и опытные специалисты</div>
         </div>
     </div>
-</div>
+</section>
 
-<footer>
-    <p>© 2026 LapkiVet — Ветеринарная клиника в Санкт-Петербурге. Забота о здоровье ваших питомцев.</p>
+<!-- АКЦИИ -->
+<section class="section-promo">
+    <div class="promo-header">
+        <h2>Актуальные акции <strong>и специальные предложения</strong></h2>
+        <a href="/booking" class="btn-outline-white">Записаться на прием</a>
+    </div>
+    <div class="promo-grid">
+        <div class="promo-card">
+            <div class="promo-tag-row">
+                <span class="promo-label">«Знакомство с клиникой»</span>
+                <span class="promo-badge">−30%</span>
+            </div>
+            <h3>Первый прием 1&nbsp;680 руб. вместо <s>2&nbsp;400 руб.</s></h3>
+            <a href="#" class="btn-more">Подробнее</a>
+        </div>
+        <div class="promo-card">
+            <div class="promo-tag-row">
+                <span class="promo-label">«Для пенсионеров»</span>
+                <span class="promo-badge">−15%</span>
+            </div>
+            <h3>Скидка на все услуги клиники</h3>
+            <a href="#" class="btn-more">Подробнее</a>
+        </div>
+        <div class="promo-card">
+            <div class="promo-tag-row">
+                <span class="promo-label">«Подготовка к наркозу»</span>
+                <span class="promo-badge">−2&nbsp;200 руб.</span>
+            </div>
+            <h3>Узи сердца в подарок перед операцией под наркозом</h3>
+            <a href="#" class="btn-more">Подробнее</a>
+        </div>
+    </div>
+</section>
+
+<!-- УСЛУГИ И СТОИМОСТЬ -->
+<section class="section-services">
+    <h2>Услуги и стоимость</h2>
+    <div class="services-grid">
+        <!-- Row 1 -->
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-paw.png') }}" alt="icon-Paw">
+            </div>
+            <div class="service-price">ОТ 1 000 РУБ.</div>
+            <div class="service-name">Паспорт. Чипирование.</div>
+        </div>
+        <div class="service-card has-photo">
+            <img src="/static/images/pets/pet11.jpg" onerror="this.src='https://images.unsplash.com/photo-1582797493098-23d8d62afe51?w=400&h=300&fit=crop'" alt="Питомец">
+        </div>
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-inj.png') }}" alt="icon-Inj">
+            </div>
+            <div class="service-price">ОТ 1 500 РУБ.</div>
+            <div class="service-name">Вакцинация</div>
+        </div>
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-cat.png') }}" alt="icon-Cat">
+            </div>
+            <div class="service-price">ОТ 1 680 РУБ.</div>
+            <div class="service-name">Консультации специалистов</div>
+        </div>
+        <!-- Row 2 -->
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-dog.png') }}" alt="icon-Dog">
+            </div>
+            <div class="service-price">ОТ 1 400 РУБ.</div>
+            <div class="service-name">УЗИ-диагностика. МРТ. Рентген.</div>
+        </div>
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-tube.png') }}" alt="icon-Tube">
+            </div>
+            <div class="service-price">ОТ 500 РУБ.</div>
+            <div class="service-name">Анализы</div>
+        </div>
+        <div class="service-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-surg.png') }}" alt="icon-Surg">
+            </div>
+            <div class="service-price">ОТ 5 000 РУБ.</div>
+            <div class="service-name">Хирургия. Кастрация/стерилизация.</div>
+        </div>
+        <div class="service-card has-photo">
+            <img src="/static/images/pets/pet1.jpg" onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&h=300&fit=crop'" alt="УЗИ питомца">
+        </div>
+    </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section class="section-contacts">
+    <h2>Контакты клиники <span>LapkiVet</span></h2>
+    <div class="contacts-grid">
+        <div class="contact-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-place.png') }}" alt="icon-Place">
+            </div>
+            <div class="contact-label-small">м. Академическая</div>
+            <div class="contact-value">г. Санкт-Петербург,<br>пр. Науки 17к2</div>
+            <div class="contact-card map">
+                <img src="images/map.jpg" alt="Карта" style="width:100%;height:100%;object-fit:cover">
+            </div>
+        </div>
+
+        <div class="contact-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-phone.png') }}" alt="icon-Phone">
+            </div>
+            <div class="contact-label-small">Телефон</div>
+            <div class="contact-value">+7 (988) 988-88-88</div>
+        </div>
+        <div class="contact-card">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-mail.png') }}" alt="icon-MAil">
+            </div>
+            <div class="contact-label-small">Email</div>
+            <div class="contact-value">info@lapkivet.ru</div>
+        </div>
+    </div>
+    <div class="contacts-grid-row2">
+        <div class="contact-card dark" style="position:relative">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-wats.png') }}" alt="icon-Watsapp">
+            </div>
+            <div class="contact-arrow">↗</div>
+            <div class="contact-value" style="color:white">Написать<br>в What'sApp</div>
+        </div>
+        <div class="contact-card dark" style="position:relative">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-gram.png') }}" alt="icon-Telegram">
+            </div>
+            <div class="contact-arrow">↗</div>
+            <div class="contact-value" style="color:white">Написать<br>в Telegram</div>
+        </div>
+        <div class="contact-card photo">
+            <img src="images/veterinarians/vet5" alt="Ветеринар">
+        </div>
+        <div class="contact-card" style="position:relative; overflow:hidden; background:var(--blue-light)">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/icons/icon-time.png') }}" alt="icon-Time">
+            </div>
+            <div class="contact-label-small" style="margin-top:auto">Режим работы</div>
+            <div class="contact-value">Работаем<br>круглосуточно</div>
+            <div class="working-hours-num">24</div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-label">КРУГЛОСУТОЧНАЯ ВЕТЕРИНАРНАЯ КЛИНИКА</div>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             alt="LapkiVet"
+             class="logo-img"
+             style="filter: brightness(0) invert(1);">
+    </div>
+    <div class="footer-animals">
+        <img src="images/fon/fon-cat" alt="Cat">
+        <img src="images/fon/fon-dog" alt="Dog">
+
+
+    </div>
+    <div class="footer-bottom">
+        <span>2024 Лапки-Вет</span>
+        <a>Политика конфиденциальности</a>
+        <span>Разработка сайта</span>
+    </div>
 </footer>
+
 {% endblock %}
 
 {% block scripts %}
 <script>
-    // Автоматический слайдер изображений
     class AutoImageSlider {
         constructor() {
             this.currentIndex = 0;
             this.images = [];
-            this.autoInterval = null;
             this.autoDelay = 4000;
             this.sliderTrack = document.getElementById('sliderTrack');
-
             this.loadImages();
         }
 
         async loadImages() {
             for (let i = 1; i <= 20; i++) {
                 const imgPath = `/static/images/pets/pet${i}.jpg`;
-                const exists = await this.imageExists(imgPath);
-                if (exists) {
+                if (await this.imageExists(imgPath)) {
                     this.images.push(imgPath);
                 }
             }
-
             if (this.images.length === 0) {
                 this.images = [
-                    'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&h=450&fit=crop',
-                    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=450&fit=crop',
-                    'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=600&h=450&fit=crop'
+                    'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=700&h=520&fit=crop',
+                    'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&h=520&fit=crop',
+                    'https://images.unsplash.com/photo-1552053831-71594a27632d?w=700&h=520&fit=crop'
                 ];
             }
-
             this.createSlides();
-            this.startAutoPlay();
+            setInterval(() => this.next(), this.autoDelay);
         }
 
         imageExists(url) {
-            return new Promise((resolve) => {
+            return new Promise(resolve => {
                 const img = new Image();
                 img.onload = () => resolve(true);
                 img.onerror = () => resolve(false);
@@ -135,46 +298,26 @@
 
         createSlides() {
             this.sliderTrack.innerHTML = '';
-
-            this.images.forEach((imgPath, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'slider-image';
-                if (index === 0) slide.classList.add('active');
-
+            this.images.forEach((src, i) => {
+                const div = document.createElement('div');
+                div.className = 'slider-image' + (i === 0 ? ' active' : '');
                 const img = document.createElement('img');
-                img.src = imgPath;
-                img.alt = `Питомец ${index + 1}`;
-
-                slide.appendChild(img);
-                this.sliderTrack.appendChild(slide);
+                img.src = src;
+                img.alt = 'Питомец';
+                div.appendChild(img);
+                this.sliderTrack.appendChild(div);
             });
-
-            this.slides = document.querySelectorAll('.slider-image');
+            this.slides = this.sliderTrack.querySelectorAll('.slider-image');
         }
 
-        showImage(index) {
-            if (!this.slides || this.slides.length === 0) return;
-
-            if (index >= this.slides.length) this.currentIndex = 0;
-            if (index < 0) this.currentIndex = this.slides.length - 1;
-
-            this.slides.forEach(slide => slide.classList.remove('active'));
+        next() {
+            if (!this.slides) return;
+            this.slides[this.currentIndex].classList.remove('active');
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
             this.slides[this.currentIndex].classList.add('active');
-        }
-
-        nextImage() {
-            this.currentIndex++;
-            this.showImage(this.currentIndex);
-        }
-
-        startAutoPlay() {
-            if (this.autoInterval) clearInterval(this.autoInterval);
-            this.autoInterval = setInterval(() => this.nextImage(), this.autoDelay);
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        new AutoImageSlider();
-    });
+    document.addEventListener('DOMContentLoaded', () => new AutoImageSlider());
 </script>
 {% endblock %}
