@@ -194,14 +194,12 @@
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/icons/icon-phone.png') }}" alt="icon-Phone">
             </div>
-            <div class="contact-label-small">Телефон</div>
             <div class="contact-value">+7 (988) 988-88-88</div>
         </div>
         <div class="contact-card">
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/icons/icon-mail.png') }}" alt="icon-MAil">
             </div>
-            <div class="contact-label-small">Email</div>
             <div class="contact-value">info@lapkivet.ru</div>
         </div>
     </div>
@@ -210,14 +208,18 @@
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/icons/icon-wats.png') }}" alt="icon-Watsapp">
             </div>
-            <div class="contact-arrow">↗</div>
+            <div class="contact-arrow">
+                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="Arrow">
+            </div>
             <div class="contact-value" style="color:white">Написать<br>в What'sApp</div>
         </div>
         <div class="contact-card dark" style="position:relative">
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/icons/icon-gram.png') }}" alt="icon-Telegram">
             </div>
-            <div class="contact-arrow">↗</div>
+            <div class="contact-arrow">
+                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="Arrow">
+            </div>
             <div class="contact-value" style="color:white">Написать<br>в Telegram</div>
         </div>
         <div class="contact-card photo">
@@ -227,7 +229,6 @@
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/icons/icon-time.png') }}" alt="icon-Time">
             </div>
-            <div class="contact-label-small" style="margin-top:auto">Режим работы</div>
             <div class="contact-value">Работаем<br>круглосуточно</div>
             <div class="working-hours-num">24</div>
         </div>

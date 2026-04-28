@@ -22,6 +22,7 @@
     --text-mid: #4A72C9;
     --text-light: #4A72C9;
 
+
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 12px;
@@ -88,7 +89,7 @@ body {
     color: var(--text-dark);
     font-weight: 400;
     font-size: 13px;
-    padding: 8px 16px;
+    padding: 10px ;
     border-radius: var(--radius-pill);
     border: 1.5px solid rgba(43, 63, 160, 0.2);
     transition: background 0.2s, color 0.2s;
@@ -155,6 +156,8 @@ body {
     margin-bottom: 16px;
     letter-spacing: -0.03em;
     line-height: 1.2;
+    border-top: 1px solid rgba(74, 114, 201, 0.2);
+
 }
 
 .hero-left h1 {
@@ -556,7 +559,7 @@ body {
     font-size: 13px;
     font-weight: 400;
     color: var(--text-light);
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
     text-transform: uppercase;
     margin-bottom: 8px;
 }
@@ -830,7 +833,7 @@ body {
 
 .section-contacts h2 {
     text-align: center;
-    font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+    font-size: 40px;
     font-weight: 600;
     color: var(--text-dark);
     letter-spacing: -0.05em;
@@ -839,7 +842,7 @@ body {
 }
 
 .section-contacts h2 span {
-    color: var(--blue-dark);
+    color: var(--text-mid);
 }
 
 .contacts-grid {
@@ -862,6 +865,7 @@ body {
     min-height: 140px;
     display: flex;
     flex-direction: column;
+
 }
 
 .contact-card.dark {
@@ -904,11 +908,10 @@ body {
 }
 
 .contact-label-small {
-    font-size: 0.6875rem;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--text-light);
     letter-spacing: 0.04em;
-    text-transform: uppercase;
     margin-top: 12px;
     margin-bottom: 4px;
 }
@@ -918,8 +921,8 @@ body {
 }
 
 .contact-value {
-    font-size: 0.9375rem;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
     color: var(--text-dark);
     letter-spacing: -0.04em;
     line-height: 1.15;
@@ -930,10 +933,15 @@ body {
 }
 
 .contact-arrow {
-    align-self: flex-end;
-    font-size: 1.2rem;
+    align-items: center;
     color: rgba(255,255,255,0.7);
-    margin-top: -20px;
+    margin-top: -40px;
+    justify-content: center;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .contact-card.photo {
