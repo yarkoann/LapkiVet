@@ -14,40 +14,42 @@
         <a href="#">Услуги</a>
         <a href="#">Контакты</a>
     </div>
+    <a href="#" class="btn-whatsapp-nav">Связаться в WhatsApp</a>
 </div>
 
-<!-- Hero секция со слайдером изображений -->
-<div class="card hero section-gap">
-    <div class="hero-content">
-        <div class="hero-text">
-            <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
-            <h1>Круглосуточная ветеринарная клиника</h1>
-            <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
-            <a href="/booking" class="btn btn-primary">Записаться на прием</a>
-        </div>
+<!-- Hero секция: слева текст, справа слайдер с блоками -->
+<div class="hero-wrapper">
+    <!-- Левая часть - текст -->
+    <div class="hero-left">
+        <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
+        <h1>Круглосуточная ветеринарная клиника</h1>
+        <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
+        <a href="/booking" class="btn btn-primary">Записаться на прием</a>
+    </div>
 
-        <div class="hero-slider-container">
-            <div class="image-slider">
-                <div class="slider-track" id="sliderTrack">
+    <!-- Правая часть - слайдер с блоками услуг поверх -->
+    <div class="hero-right">
+        <div class="slider-with-cards">
+            <!-- Слайдер -->
+            <div class="slider-container">
+                <div class="image-slider">
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Фото будут загружены динамически через JavaScript -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<!-- Блоки услуг -->
-<div class="row section-gap">
-    <div class="col">
-        <div class="card service-block">
-            <h3>Страхование жизни на операциях*</h3>
-            <p>Проводим операции с финансовой ответственностью за жизнь животного с гарантией результата.</p>
-            <a href="#" class="btn btn-whatsapp">Связаться в WhatsApp</a>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card service-block">
-            <h3>Скорая помощь</h3>
-            <p>Животное в тяжелом состоянии и нужна экстренная помощь. </p>
+            <!-- Карточки услуг поверх слайдера -->
+            <div class="overlay-cards">
+                <div class="overlay-card">
+                    <h3>Страхование жизни на операциях*</h3>
+                    <p>Проводим операции с финансовой ответственностью за жизнь животного с гарантией результата.</p>
+                </div>
+                <div class="overlay-card">
+                    <h3>Скорая помощь</h3>
+                    <p>Животное в тяжелом состоянии и нужна экстренная помощь.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -89,20 +91,19 @@
 
 {% block scripts %}
 <script>
-    // Автоматический слайдер без кнопок управления
+    // Автоматический слайдер изображений
     class AutoImageSlider {
         constructor() {
             this.currentIndex = 0;
             this.images = [];
             this.autoInterval = null;
-            this.autoDelay = 4000; // 4 секунды
+            this.autoDelay = 4000;
             this.sliderTrack = document.getElementById('sliderTrack');
 
             this.loadImages();
         }
 
         async loadImages() {
-            // Пытаемся загрузить изображения pet1.jpg - pet20.jpg
             for (let i = 1; i <= 20; i++) {
                 const imgPath = `/static/images/pets/pet${i}.jpg`;
                 const exists = await this.imageExists(imgPath);
@@ -111,13 +112,11 @@
                 }
             }
 
-            // Если изображения не найдены, используем заглушки
             if (this.images.length === 0) {
-                console.log('Изображения не найдены в папке static/images/pets/');
                 this.images = [
-                    'https://placehold.co/400x300/2c5282/white?text=Pet+1',
-                    'https://placehold.co/400x300/2c5282/white?text=Pet+2',
-                    'https://placehold.co/400x300/2c5282/white?text=Pet+3'
+                    'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&h=450&fit=crop',
+                    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=450&fit=crop',
+                    'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=600&h=450&fit=crop'
                 ];
             }
 
@@ -135,10 +134,8 @@
         }
 
         createSlides() {
-            // Очищаем трек
             this.sliderTrack.innerHTML = '';
 
-            // Создаем слайды для каждого изображения
             this.images.forEach((imgPath, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-image';
@@ -152,21 +149,16 @@
                 this.sliderTrack.appendChild(slide);
             });
 
-            // Сохраняем ссылки на слайды
             this.slides = document.querySelectorAll('.slider-image');
         }
 
         showImage(index) {
             if (!this.slides || this.slides.length === 0) return;
 
-            // Нормализация индекса
             if (index >= this.slides.length) this.currentIndex = 0;
             if (index < 0) this.currentIndex = this.slides.length - 1;
 
-            // Скрыть все изображения
             this.slides.forEach(slide => slide.classList.remove('active'));
-
-            // Показать текущее изображение
             this.slides[this.currentIndex].classList.add('active');
         }
 
@@ -181,7 +173,6 @@
         }
     }
 
-    // Запуск слайдера после загрузки страницы
     document.addEventListener('DOMContentLoaded', () => {
         new AutoImageSlider();
     });

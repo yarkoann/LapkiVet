@@ -29,7 +29,7 @@ body {
 }
 
 .section-gap {
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 }
 
 .block-header {
@@ -49,146 +49,14 @@ body {
     font-size: 1.1rem;
 }
 
-/* Hero секция */
-.hero {
-    background: linear-gradient(105deg, #e8f0f8 0%, #d4e4f2 100%);
-    padding: 48px;
-}
-
-.hero-content {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    flex-wrap: wrap;
-}
-
-.hero-text {
-    flex: 1;
-    min-width: 280px;
-}
-
-.hero-text h1 {
-    font-size: 2.8rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: #1a3a5c;
-    margin-bottom: 16px;
-}
-
-.hero-text p {
-    font-size: 1.2rem;
-    color: #2c5282;
-    max-width: 550px;
-    margin-bottom: 32px;
-}
-
-.address-text {
-    font-size: 0.9rem;
-    color: #4a6f8f;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-/* Слайдер только для изображений (без кнопок) */
-.hero-slider-container {
-    flex: 0.8;
-    min-width: 300px;
-    position: relative;
-}
-
-.image-slider {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 24px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-.slider-track {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4/3;
-}
-
-.slider-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-}
-
-.slider-image.active {
-    opacity: 1;
-}
-
-.slider-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 24px;
-}
-
-/* Кнопки */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 32px;
-    border-radius: 60px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.25s;
-    cursor: pointer;
-    border: none;
-    font-family: 'Manrope', sans-serif;
-}
-
-.btn-primary {
-    background: #2c5282;
-    color: white;
-    box-shadow: 0 4px 8px rgba(44, 82, 130, 0.2);
-}
-
-.btn-primary:hover {
-    background: #1e3a5f;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(44, 82, 130, 0.3);
-}
-
-.btn-whatsapp {
-    background: #25D366;
-    color: white;
-}
-
-.btn-whatsapp:hover {
-    background: #1da851;
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid #2c5282;
-    color: #2c5282;
-}
-
-.btn-outline:hover {
-    background: #e8f0f8;
-    transform: translateY(-2px);
-}
-
 /* Навигация */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 30px 0 20px;
+    padding: 30px 0 40px;
+    gap: 20px;
 }
 
 .logo {
@@ -224,43 +92,201 @@ body {
     color: #2c5282;
 }
 
-/* Сетка услуг */
-.row {
+.btn-whatsapp-nav {
+    background: #25D366;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+
+.btn-whatsapp-nav:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+}
+
+/* Hero wrapper - две колонки */
+.hero-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    gap: 60px;
+    margin-bottom: 80px;
+    align-items: stretch;
 }
 
-.col {
+/* Левая колонка с текстом */
+.hero-left {
     flex: 1;
-    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.service-block {
-    padding: 40px 32px;
-    text-align: center;
-    transition: transform 0.3s ease;
+.hero-left .address-text {
+    font-size: 0.9rem;
+    color: #4a6f8f;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.service-block:hover {
-    transform: translateY(-8px);
-}
-
-.service-icon {
-    font-size: 3rem;
+.hero-left h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #1a3a5c;
     margin-bottom: 20px;
 }
 
-.service-block h3 {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-    color: #1e3a5f;
+.hero-left p {
+    font-size: 1.1rem;
+    color: #2c5282;
+    margin-bottom: 32px;
+    line-height: 1.5;
 }
 
-.service-block p {
-    margin-bottom: 28px;
-    color: #4a6f8f;
+/* Правая колонка - слайдер с карточками поверх */
+.hero-right {
+    flex: 1;
+}
+
+.slider-with-cards {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Слайдер */
+.slider-container {
+    width: 100%;
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    background: #1a3a5c;
+}
+
+.slider-track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+.slider-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Карточки поверх слайдера */
+.overlay-cards {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.overlay-card {
+    flex: 1;
+    padding: 24px 20px;
+    color: white;
+}
+
+.overlay-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.overlay-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 16px;
     line-height: 1.4;
+}
+
+/* Кнопки на overlay карточках */
+.btn-overlay {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+}
+
+.btn-outline-light {
+    background: transparent;
+    border: 1.5px solid white;
+    color: white;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Основные кнопки */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+}
+
+.btn-primary {
+    background: #2c5282;
+    color: white;
+    box-shadow: 0 4px 8px rgba(44, 82, 130, 0.2);
+}
+
+.btn-primary:hover {
+    background: #1e3a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(44, 82, 130, 0.3);
 }
 
 /* Преимущества */
@@ -446,40 +472,65 @@ footer {
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
-    .navbar {
+@media (max-width: 900px) {
+    .hero-wrapper {
         flex-direction: column;
-        gap: 20px;
+        gap: 40px;
     }
 
-    .hero {
-        padding: 32px;
-    }
-
-    .hero-content {
-        flex-direction: column;
+    .hero-left {
         text-align: center;
     }
 
-    .hero-text h1 {
-        font-size: 1.8rem;
+    .hero-left .address-text {
+        justify-content: center;
     }
 
-    .hero-text p {
-        font-size: 1rem;
+    .hero-left h1 {
+        font-size: 2rem;
+    }
+
+    .hero-left p {
         margin-left: auto;
         margin-right: auto;
     }
 
-    .address-text {
+    .overlay-card h3 {
+        font-size: 1rem;
+    }
+
+    .overlay-card p {
+        font-size: 0.75rem;
+    }
+
+    .btn-overlay {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
         justify-content: center;
     }
 
-    .hero-slider-container {
-        width: 100%;
+    .overlay-cards {
+        flex-direction: column;
+        position: relative;
+        background: #1a3a5c;
     }
 
-    .form-card {
+    .overlay-card {
+        padding: 20px;
+    }
+
+    .advantages {
         padding: 28px;
     }
 
@@ -487,12 +538,8 @@ footer {
         flex-direction: column;
     }
 
-    .advantages {
+    .form-card {
         padding: 28px;
-    }
-
-    .service-block h3 {
-        font-size: 1.3rem;
     }
 
     .logo-img {
@@ -510,7 +557,11 @@ footer {
         font-size: 0.9rem;
     }
 
-    .hero-text h1 {
-        font-size: 1.4rem;
+    .hero-left h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-left p {
+        font-size: 1rem;
     }
 }
