@@ -6,7 +6,7 @@
 <!-- Навигация -->
 <div class="navbar">
     <div class="logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img" onerror="this.src='https://placehold.co/200x60/2c5282/white?text=LapkiVet'">
     </div>
     <div class="nav-links">
         <a href="#">О клинике</a>
@@ -16,12 +16,23 @@
     </div>
 </div>
 
-<!-- Hero секция -->
+<!-- Hero секция со слайдером изображений -->
 <div class="card hero section-gap">
-    <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
-    <h1>Круглосуточная ветеринарная клиника</h1>
-    <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
-    <a href="/booking" class="btn btn-primary">Записаться на прием</a>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="address-text">📍 г. Санкт-Петербург, пр. Науки 17к2</div>
+            <h1>Круглосуточная ветеринарная клиника</h1>
+            <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
+            <a href="/booking" class="btn btn-primary">Записаться на прием</a>
+        </div>
+
+        <div class="hero-slider-container">
+            <div class="image-slider">
+                <div class="slider-track" id="sliderTrack">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Блоки услуг -->
@@ -36,7 +47,7 @@
     <div class="col">
         <div class="card service-block">
             <h3>Скорая помощь</h3>
-            <p>Животное в тяжелом состоянии и нужна экстренная помощь.</p>
+            <p>Животное в тяжелом состоянии и нужна экстренная помощь. </p>
         </div>
     </div>
 </div>
@@ -45,19 +56,28 @@
 <div class="card advantages section-gap">
     <div class="block-header">
         <h2>Почему LapkiVet?</h2>
+        <p class="subtitle">Мы заботимся о ваших питомцах как о своих</p>
     </div>
     <div class="advantages-grid">
         <div class="advantage-item">
-            <h3>🕐 24/7</h3>
+            <div class="advantage-icon">🕐</div>
+            <h3>24/7</h3>
             <p>Круглосуточный прием и стационар. В любое время суток мы рядом.</p>
         </div>
         <div class="advantage-item">
-            <h3>🔬 Современное оборудование</h3>
+            <div class="advantage-icon">🔬</div>
+            <h3>Современное оборудование</h3>
             <p>Экспресс-лаборатория, цифровой рентген, УЗИ экспертного класса.</p>
         </div>
         <div class="advantage-item">
-            <h3>❤️ Забота</h3>
+            <div class="advantage-icon">❤️</div>
+            <h3>Забота</h3>
             <p>Дружелюбный персонал и комфортные условия для питомцев.</p>
+        </div>
+        <div class="advantage-item">
+            <div class="advantage-icon">🎓</div>
+            <h3>Опытные врачи</h3>
+            <p>Специалисты с 10+ годами практики в ветеринарии.</p>
         </div>
     </div>
 </div>
@@ -65,4 +85,105 @@
 <footer>
     <p>© 2026 LapkiVet — Ветеринарная клиника в Санкт-Петербурге. Забота о здоровье ваших питомцев.</p>
 </footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Автоматический слайдер без кнопок управления
+    class AutoImageSlider {
+        constructor() {
+            this.currentIndex = 0;
+            this.images = [];
+            this.autoInterval = null;
+            this.autoDelay = 4000; // 4 секунды
+            this.sliderTrack = document.getElementById('sliderTrack');
+
+            this.loadImages();
+        }
+
+        async loadImages() {
+            // Пытаемся загрузить изображения pet1.jpg - pet20.jpg
+            for (let i = 1; i <= 20; i++) {
+                const imgPath = `/static/images/pets/pet${i}.jpg`;
+                const exists = await this.imageExists(imgPath);
+                if (exists) {
+                    this.images.push(imgPath);
+                }
+            }
+
+            // Если изображения не найдены, используем заглушки
+            if (this.images.length === 0) {
+                console.log('Изображения не найдены в папке static/images/pets/');
+                this.images = [
+                    'https://placehold.co/400x300/2c5282/white?text=Pet+1',
+                    'https://placehold.co/400x300/2c5282/white?text=Pet+2',
+                    'https://placehold.co/400x300/2c5282/white?text=Pet+3'
+                ];
+            }
+
+            this.createSlides();
+            this.startAutoPlay();
+        }
+
+        imageExists(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        createSlides() {
+            // Очищаем трек
+            this.sliderTrack.innerHTML = '';
+
+            // Создаем слайды для каждого изображения
+            this.images.forEach((imgPath, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-image';
+                if (index === 0) slide.classList.add('active');
+
+                const img = document.createElement('img');
+                img.src = imgPath;
+                img.alt = `Питомец ${index + 1}`;
+
+                slide.appendChild(img);
+                this.sliderTrack.appendChild(slide);
+            });
+
+            // Сохраняем ссылки на слайды
+            this.slides = document.querySelectorAll('.slider-image');
+        }
+
+        showImage(index) {
+            if (!this.slides || this.slides.length === 0) return;
+
+            // Нормализация индекса
+            if (index >= this.slides.length) this.currentIndex = 0;
+            if (index < 0) this.currentIndex = this.slides.length - 1;
+
+            // Скрыть все изображения
+            this.slides.forEach(slide => slide.classList.remove('active'));
+
+            // Показать текущее изображение
+            this.slides[this.currentIndex].classList.add('active');
+        }
+
+        nextImage() {
+            this.currentIndex++;
+            this.showImage(this.currentIndex);
+        }
+
+        startAutoPlay() {
+            if (this.autoInterval) clearInterval(this.autoInterval);
+            this.autoInterval = setInterval(() => this.nextImage(), this.autoDelay);
+        }
+    }
+
+    // Запуск слайдера после загрузки страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        new AutoImageSlider();
+    });
+</script>
 {% endblock %}
