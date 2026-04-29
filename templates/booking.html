@@ -3,59 +3,73 @@
 {% block title %}Запись на прием{% endblock %}
 
 {% block content %}
-<div class="booking-wrapper">
-    <div class="navbar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.png') }}"
-                 alt="LapkiVet"
-                 class="logo-img"
-                 style="filter: brightness(0) invert(1);">
-        </div>
-        <a href="/" class="back-link">← Вернуться на главную</a>
-    </div>
+<div class="booking-page">
+    <div class="booking-card">
+        <!-- LEFT VISUAL SIDE -->
+        <div class="booking-visual">
+            <!-- Logo top-left -->
+            <div class="booking-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet"
+                     style="height: 36px; width: auto; filter: brightness(0) invert(1);">
+            </div>
 
-    <div class="card form-card">
-        <div class="block-header">
+            <!-- Decorative bone/fish elements from fon folder -->
+            <img src="{{ url_for('static', filename='images/fon/fon-book.png') }}" alt="" class="booking-decor decor-1" onerror="this.style.display='none'">
+
+            <!-- Pet photos in circle -->
+            <div class="booking-pets-circle">
+
+                <!-- Dog photo (bottom/front) -->
+                <img src="{{ url_for('static', filename='images/pets/pet5.jpg') }}" alt="Питомец"
+                     class="pet-circle-img pet-dog">
+                <!-- Cat photo (top/back, smaller) -->
+                <img src="{{ url_for('static', filename='images/pets/pet6.jpg') }}" alt="Питомец"
+                     class="pet-circle-img pet-cat">
+            </div>
+        </div>
+
+        <!-- DIVIDER LINE -->
+        <div class="booking-divider"></div>
+
+        <!-- RIGHT FORM SIDE -->
+        <div class="booking-form-side">
             <h2>Запишите своего питомца на приём</h2>
-            <p>Наш администратор свяжется с вами для согласования времени визита.</p>
+            <p class="form-subtitle">Наш администратор свяжется с вами для согласования времени визита.</p>
+
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <input type="text" id="petOwnerName" name="ownerName" placeholder="Имя" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Номер телефона" required>
+                </div>
+
+                <div class="form-group">
+                    <select id="serviceDirection" name="service">
+                        <option value="" disabled selected>Выберите направление услуги</option>
+                        <option value="Терапия">Терапия</option>
+                        <option value="Хирургия">Хирургия</option>
+                        <option value="Вакцинация">Вакцинация</option>
+                        <option value="Стоматология">Стоматология</option>
+                        <option value="УЗИ-диагностика">УЗИ-диагностика</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="appointmentDate" name="preferredDate" placeholder="Выберите дату" required>
+                </div>
+
+                <div class="form-group checkbox-row">
+                    <input type="checkbox" id="privacyPolicy" name="privacyConsent" required>
+                    <label for="privacyPolicy">Я соглашаюсь с условиями политики конфиденциальности</label>
+                </div>
+
+                <button type="submit" class="btn-submit">Отправить</button>
+            </form>
+
+            <div id="formMessage"></div>
         </div>
-
-        <form id="appointmentForm">
-            <div class="form-group">
-                <label for="petOwnerName">Имя *</label>
-                <input type="text" id="petOwnerName" name="ownerName" placeholder="Ваше имя" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phoneNumber">Номер телефона *</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 (___) ___-__-__" required>
-            </div>
-
-            <div class="form-group">
-                <label for="serviceDirection">Выберите направление услуги</label>
-                <select id="serviceDirection" name="service">
-                    <option value="Терапия">Терапия</option>
-                    <option value="Хирургия">Хирургия</option>
-                    <option value="Вакцинация">Вакцинация</option>
-                    <option value="Стоматология">Стоматология</option>
-                    <option value="УЗИ-диагностика">УЗИ-диагностика</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="appointmentDate">Выберите дату</label>
-                <input type="date" id="appointmentDate" name="preferredDate" required>
-            </div>
-
-            <div class="form-group checkbox">
-                <input type="checkbox" id="privacyPolicy" name="privacyConsent" required>
-                <label for="privacyPolicy">Я соглашаюсь с условиями политики конфиденциальности</label>
-            </div>
-
-            <button type="submit" class="btn-submit">Отправить</button>
-        </form>
-
-        <div id="formMessage"></div>
     </div>
 </div>
 {% endblock %}
@@ -76,7 +90,6 @@
             privacyConsent: document.getElementById('privacyPolicy').checked
         };
 
-        // Валидация
         if (!formData.ownerName || !formData.phoneNumber || !formData.preferredDate) {
             showMessage('Пожалуйста, заполните все обязательные поля', 'error');
             return;
@@ -90,9 +103,7 @@
         try {
             const response = await fetch('/api/appointments', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
@@ -110,13 +121,10 @@
     });
 
     function showMessage(text, type) {
-        messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
-        setTimeout(() => {
-            messageDiv.innerHTML = '';
-        }, 5000);
+        messageDiv.innerHTML = `<div class="form-message ${type}">${text}</div>`;
+        setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
     }
 
-    // Установка минимальной даты (сегодня)
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('appointmentDate').min = today;
 </script>
