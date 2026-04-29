@@ -1,12 +1,20 @@
 /* =============================================
    LapkiVet — CSS по макету
    ============================================= */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25vh;
+    font-size: 16px;
+}
+
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
 
 :root {
     --bg: #f4efeb;
@@ -20,17 +28,19 @@
     --text-mid: #4A72C9;
     --text-white: #F5EFEC;
 
-    --radius-lg: 24px;
-    --radius-md: 16px;
-    --radius-sm: 12px;
+
     --radius-pill: 60px;
+    --radius-lg: 40px;
+    --radius-md: 30px;
+    --radius-sm: 8px;
+
     --gap-section: 80px;
     --gap-header: 40px;
     --col-gap: 10px;
     --col-pad: 20px;
 }
 
-html { font-size: 16px; }
+
 
 body {
     font-family: 'Manrope', sans-serif;
@@ -109,7 +119,7 @@ body {
     font-weight: 400;
     font-size: 12px;
     padding: 8px 14px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-md);
     border: 1.5px solid rgba(43, 63, 160, 0.2);
     transition: background 0.2s, color 0.2s;
     line-height: 1;
@@ -213,7 +223,7 @@ body {
     background: var(--blue-dark);
     color: var(--text-white);
     padding: 9px 16px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-md);
     text-decoration: none;
     font-weight: 500;
     font-size: 12px;
@@ -275,28 +285,22 @@ body {
 /* Overlay cards at bottom — two separate blocks */
 .overlay-cards {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
     z-index: 5;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 2px;
+    gap: 5px;
     color: var(--blue-dark);
 }
 
 /* Card 1: semi-transparent */
-.overlay-card {
+.overlay-card, .overlay-card-em {
     padding: 20px 18px 24px;
-
-    border-radius: 30px;
+    border-radius: var(--radius-md);
 }
 
-.overlay-card-em {
-    padding: 20px 18px 24px;
-
-    border-radius: 30px;
-}
 
 .overlay-card-em img{
     filter: drop-shadow(0 0 0 #ffffff) drop-shadow(0 0 0 #ffffff) brightness(500%) saturate(0%);
@@ -305,8 +309,6 @@ body {
 
 .card-insurance {
     background: rgba(225, 225, 238, 0.5);
-
-
     backdrop-filter: blur(11.5px);
     -webkit-backdrop-filter: blur(11.5px);
 
@@ -383,6 +385,20 @@ body {
     background: var(--bg);
     margin-bottom: var(--gap-section);
     text-align: center;
+    z-index: 2;
+
+    position: relative;
+
+}
+
+.clinic-decor{
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    right: -20px;
+    bottom: -50px;
+    filter: brightness(98%);
+
 }
 
 .section-label {
@@ -395,6 +411,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 24px;
+    z-index: 2;
 }
 
 .section-about h2 {
@@ -405,12 +422,20 @@ body {
     letter-spacing: -0.05em;
     max-width: 720px;
     margin: 0 auto 16px;
+    position: relative;
+    z-index: 2;
+
 }
 
 .section-about h2 strong {
     color: var(--text-dark);
     font-weight: 600;
+    position: relative;
+    z-index: 2;
+
 }
+
+
 
 .about-subtitle {
     font-size: 0.875rem;
@@ -418,19 +443,23 @@ body {
     margin-bottom: var(--gap-header);
     letter-spacing: -0.02em;
     line-height: 1.5;
+    z-index: 2;
+    position: relative;
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--col-gap);
+    z-index: 2;
 }
 
 .stat-card {
     background: var(--blue-light);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 28px 24px;
     text-align: left;
+    z-index: 2;
 }
 
 .stat-num {
@@ -444,7 +473,7 @@ body {
 
 .stat-avatars {
     display: flex;
-    gap: 4px;
+    gap: 0px;
     margin-bottom: 12px;
 }
 
@@ -454,7 +483,30 @@ body {
     border-radius: 50%;
     object-fit: cover;
     object-position: top center;
-    border: 2px;
+    border: 1px solid var(--bg);
+    margin-right: -6px;
+    position: relative;
+}
+
+/* Первый элемент сверху (перекрывает всех) */
+.stat-avatars img:nth-child(1) {
+    z-index: 4;
+}
+
+/* Второй элемент перекрывает третьего и четвертого */
+.stat-avatars img:nth-child(2) {
+    z-index: 3;
+}
+
+/* Третий элемент перекрывает четвертого */
+.stat-avatars img:nth-child(3) {
+    z-index: 2;
+}
+
+/* Последний элемент внизу */
+.stat-avatars img:nth-child(4) {
+    z-index: 1;
+    margin-right: 0;
 }
 
 .stat-desc {
@@ -554,7 +606,7 @@ body {
     font-size: 12px;
     font-weight: 600;
     padding: 4px 12px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-md);
     letter-spacing: 0;
     white-space: nowrap;
     flex-shrink: 0;
@@ -587,6 +639,7 @@ body {
     pointer-events: none;
     object-fit: contain;
     object-position: bottom right;
+    filter: brightness(2);
 }
 .promo-animal-walk {
     position: absolute;
@@ -598,6 +651,7 @@ body {
     pointer-events: none;
     object-fit: contain;
     object-position: bottom right;
+    filter: brightness(2);
 }
 
 .promo-card .btn-more {
@@ -647,7 +701,7 @@ body {
 
 .service-card {
     background: var(--blue-light);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 20px 18px;
     display: flex;
     flex-direction: column;
@@ -729,7 +783,7 @@ body {
 
 .contact-card {
     background: var(--blue-light);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 20px 18px;
     min-height: 140px;
     display: flex;
@@ -846,12 +900,11 @@ body {
    ============================================= */
 .site-footer {
     background: var(--blue-dark);
-    border-radius: var(--radius-lg);
-    padding: 36px 48px 28px;
-    margin-bottom: 32px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 200px 48px 28px;
     position: relative;
-    overflow: hidden;
-    min-height: 160px;
+    overflow: visible;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -860,36 +913,39 @@ body {
 .footer-top-row {
     display: flex;
     flex-direction: column;
-    gap: 8px;
     position: relative;
     z-index: 2;
 }
 
 .footer-label {
-    font-size: 0.6rem;
+    font-size: 13px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(150, 179, 241, 1);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    line-height: 1.5;
+    letter-spacing: 0;
+    line-height: 1.3;
+    transform: translate(0, -160px);
+
 }
 
 .footer-logo img {
-    height: 52px;
-    width: auto;
+
+    transform: scale(1.5) translate(35px, -12px);
+
 }
 
 .footer-animals {
     position: absolute;
-    right: 70px;
+    right:50px;
     top: 0;
-    bottom: 65px;
+    bottom: 75px;
     width: 55%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     z-index: 1;
     pointer-events: none;
+    overflow: visible;
 }
 
 .footer-animal {
@@ -897,12 +953,12 @@ body {
     width: auto;
     object-fit: contain;
     object-position: bottom;
-    opacity: 0.35;
+
 }
 
 .footer-cat {
     height: 55%;
-    margin-bottom: 0;
+    transform: translate(-30px);
 }
 
 .footer-dog {
@@ -932,99 +988,64 @@ body {
 /* =============================================
    BOOKING PAGE
    ============================================= */
-.booking-page {
-    min-height: 100vh;
-    background: var(--bg);
-    padding: 20px 0 60px;
+.section-booking-integrated {
+    margin-bottom: var(--gap-section);
 }
 
-.booking-card {
+.booking-integrated-card {
     background: var(--blue-dark);
     border-radius: var(--radius-lg);
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 2px 1fr;
-    min-height: 575px;
-    margin-top: 20px;
+    min-height: 520px;
 }
 
-/* Divider */
-.booking-divider {
-    background: rgba(255, 255, 255, 0.2);
-    width: 2px;
-    align-self: stretch;
-
-}
-
-/* Left visual side */
-.booking-visual {
+/* Переопределение для левой части на светлом фоне */
+.section-booking-integrated .booking-visual {
     position: relative;
     overflow: hidden;
     min-height: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--blue-dark);
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
 }
 
-.booking-logo {
+.section-booking-integrated .booking-logo {
     position: absolute;
-    top: 24px;
-    left: 24px;
+    top: 40px;
+    left: 60px;
     z-index: 10;
-    transform: translateY(20px) translateX(20px);
-
-
 }
 
-/* Decorative elements */
-.booking-decor {
+.section-booking-integrated .booking-decor {
     position: absolute;
-    opacity: 0.2;
     pointer-events: none;
+    transform: scale(0.97);
     z-index: 1;
 }
 
-.decor-1 {
-    top: 20%;
-    right: 8%;
-    width: 36px;
-    transform: rotate(30deg);
-}
 
-.decor-2 {
-    bottom: 28%;
-    left: 6%;
-    width: 28px;
-    transform: rotate(-20deg);
-}
 
-.decor-3 {
-    top: 55%;
-    right: 12%;
-    width: 32px;
-    transform: rotate(15deg);
-}
-
-/* Circle with pets */
-.booking-pets-circle {
+.section-booking-integrated .booking-pets-circle {
     position: relative;
     width: 280px;
     height: 280px;
     z-index: 2;
 }
 
-
-
-.pet-circle-img {
+.section-booking-integrated .pet-circle-img {
     position: absolute;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.pet-dog {
-    width: 400px;
-    height: 400px;
-    left: 45%;
+.section-booking-integrated .pet-dog {
+    width: 420px;
+    height: 420px;
+    left: 42%;
     bottom: -90px;
     transform: translateX(-50%);
     z-index: 3;
@@ -1032,7 +1053,7 @@ body {
     position: absolute;
 }
 
-.pet-cat {
+.section-booking-integrated .pet-cat {
     width: 180px;
     height: 180px;
     z-index: 4;
@@ -1043,24 +1064,36 @@ body {
     position: absolute;
 }
 
-/* Right form side */
-.booking-form-side {
+
+.booking-divider {
+    background: var(--blue-mid);
+    height: 85%;
+    align-self: center;
+
+
+}
+
+/* Правая часть формы */
+.section-booking-integrated .booking-form-side {
     padding: 48px 48px 48px 44px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: var(--blue-dark);
+
 }
 
-.booking-form-side h2 {
+.section-booking-integrated .booking-form-side h2 {
     font-size: 40px;
     font-weight: 600;
     color: var(--white);
     line-height: 0.95;
     letter-spacing: -0.04em;
     margin-bottom: 10px;
+    z-index: 2;
 }
 
-.booking-form-side .form-subtitle {
+.section-booking-integrated .booking-form-side .form-subtitle {
     font-size: 13px;
     color: var(--white-blue);
     letter-spacing: 0;
@@ -1069,34 +1102,34 @@ body {
     font-weight: 400;
 }
 
-.form-group {
+/* Форма */
+.section-booking-integrated .form-group {
     margin-bottom: 10px;
-
 }
 
-.form-group input,
-.form-group select {
+.section-booking-integrated .form-group input,
+.section-booking-integrated .form-group select {
     width: 100%;
     background: var(--blue-mid);
-    border: solid var(--blue-mid);
-    border-radius: var(--radius-md);
+    border: 1px solid var(--blue-mid);
+    border-radius: var(--radius-sm);
     padding: 13px 16px;
     font-family: 'Manrope', sans-serif;
     font-size: 15px;
     font-weight: 400;
     color: var(--white-blue);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     outline: none;
     transition: border-color 0.2s, background 0.2s;
     -webkit-appearance: none;
     appearance: none;
 }
 
-.form-group input::placeholder {
+.section-booking-integrated .form-group input::placeholder {
     color: var(--white-blue);
 }
 
-.form-group select {
+.section-booking-integrated .form-group select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
@@ -1104,30 +1137,27 @@ body {
     padding-right: 40px;
     cursor: pointer;
     color: var(--white-blue);
-
 }
 
-.form-group select option {
+.section-booking-integrated .form-group select option {
     background: var(--blue-mid);
     color: var(--white-blue);
 }
 
-.form-group select:valid {
-    color: var(--white-blue);
-}
 
-.form-group input:focus,
-.form-group select:focus {
+
+.section-booking-integrated .form-group input:focus,
+.section-booking-integrated .form-group select:focus {
     border-color: rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.18);
 }
 
-.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+.section-booking-integrated .form-group input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1) opacity(0.5);
     cursor: pointer;
 }
 
-.form-group.checkbox-row {
+.section-booking-integrated .form-group.checkbox-row {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1135,7 +1165,7 @@ body {
     margin-top: 5px;
 }
 
-.form-group.checkbox-row input[type="checkbox"] {
+.section-booking-integrated .form-group.checkbox-row input[type="checkbox"] {
     width: 17px;
     height: 17px;
     min-width: 17px;
@@ -1147,7 +1177,17 @@ body {
     flex-shrink: 0;
 }
 
-.form-group.checkbox-row label {
+.section-booking-integrated .form-group.checkbox-row input[type="checkbox"]:checked {
+    background: var(--blue-mid);
+    border-color: var(--white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+}
+
+
+.section-booking-integrated .form-group.checkbox-row label {
     font-size: 12px;
     color: rgba(150, 179, 241, 1);
     cursor: pointer;
@@ -1155,7 +1195,7 @@ body {
     line-height: 1.45;
 }
 
-.btn-submit {
+.section-booking-integrated .btn-submit {
     background: var(--text-white);
     color: var(--text-dark);
     border: none;
@@ -1172,35 +1212,42 @@ body {
     display: inline-block;
 }
 
-.btn-submit:hover {
+.section-booking-integrated .btn-submit:hover {
     opacity: 0.9;
 }
 
-.form-message {
+.section-booking-integrated .form-message {
     border-radius: var(--radius-md);
     padding: 14px 18px;
     margin-top: 14px;
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: -0.02em;
-    animation: fadeIn 0.25s ease;
+    animation: slideInUp 0.25s ease;
 }
 
-.form-message.success {
+.section-booking-integrated .form-message.success {
     background: rgba(255, 255, 255, 0.15);
     color: var(--white);
     border: 1.5px solid rgba(255, 255, 255, 0.3);
 }
 
-.form-message.error {
+.section-booking-integrated .form-message.error {
     background: rgba(255, 80, 80, 0.2);
     color: #ffcccc;
     border: 1.5px solid rgba(255, 80, 80, 0.4);
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.3);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =============================================
@@ -1218,9 +1265,29 @@ body {
     .contacts-grid,
     .contacts-grid-row2 { grid-template-columns: 1fr 1fr; }
 
-    .booking-card { grid-template-columns: 1fr; }
-    .booking-divider { display: none; }
-    .booking-visual { min-height: 300px; }
+    .booking-integrated-card {
+        grid-template-columns: 1fr;
+    }
+    .section-booking-integrated .booking-visual {
+        min-height: 320px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .section-booking-integrated .booking-form-side {
+        padding: 32px 28px;
+    }
+    .section-booking-integrated .booking-form-side h2 {
+        font-size: 32px;
+    }
+    .section-booking-integrated .pet-dog {
+        width: 280px;
+        height: 280px;
+        bottom: -60px;
+    }
+    .section-booking-integrated .pet-cat {
+        width: 130px;
+        height: 130px;
+        bottom: 100px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1239,7 +1306,22 @@ body {
     .contacts-grid,
     .contacts-grid-row2 { grid-template-columns: 1fr 1fr; }
 
-    .booking-form-side { padding: 28px 24px; }
+    .section-booking-integrated .booking-form-side {
+        padding: 24px 20px;
+    }
+    .section-booking-integrated .booking-form-side h2 {
+        font-size: 28px;
+    }
+    .section-booking-integrated .pet-dog {
+        width: 220px;
+        height: 220px;
+        bottom: -40px;
+    }
+    .section-booking-integrated .pet-cat {
+        width: 100px;
+        height: 100px;
+        bottom: 70px;
+    }
 
     .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }

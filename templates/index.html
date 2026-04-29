@@ -13,10 +13,10 @@
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet" class="logo-img">
             </div>
             <div class="nav-links">
-                <a href="#">О клинике</a>
-                <a href="#">Акции</a>
-                <a href="#">Услуги</a>
-                <a href="#">Контакты</a>
+                <a href="#about-section">О клинике</a>
+                <a href="#promo-section" >Акции</a>
+                <a href="#services-section" >Услуги</a>
+                <a href="#contacts-section" >Контакты</a>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             </div>
             <h1>Круглосуточная ветеринарная клиника</h1>
             <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
-            <a href="/booking" class="btn-primary">Записаться на прием</a>
+            <a href="#booking-section"  class="btn-primary">Записаться на прием</a>
         </div>
     </div>
 
@@ -72,7 +72,11 @@
 </section>
 
 <!-- О КЛИНИКЕ -->
-<section class="section-about">
+<section id="about-section" class="section-about">
+
+    <img src="{{ url_for('static', filename='images/fon/fon-clinic.png') }}" alt="" class="clinic-decor" onerror="this.style.display='none'">
+
+
     <div class="section-label">
         <img src="{{ url_for('static', filename='images/paw.png') }}" alt="Paw" style="height:16px;width:auto;">
         ВЕТЕРИНАРНАЯ КЛИНИКА С ДУШОЙ
@@ -103,7 +107,7 @@
 </section>
 
 <!-- АКЦИИ -->
-<section class="section-promo">
+<section id="promo-section" class="section-promo">
     <div class="promo-header">
         <h2>Актуальные акции <strong>и специальные предложения</strong></h2>
         <a href="/booking" class="btn-outline-white">Записаться на прием</a>
@@ -140,7 +144,7 @@
 </section>
 
 <!-- УСЛУГИ И СТОИМОСТЬ -->
-<section class="section-services">
+<section id="services-section" class="section-services">
     <h2>Услуги и стоимость</h2>
     <div class="services-grid">
         <!-- Row 1 -->
@@ -200,8 +204,72 @@
     </div>
 </section>
 
+<!-- ЗАПИСЬ ПИТОМЦА -->
+<section id="booking-section" class="section-booking-integrated">
+    <div class="booking-integrated-card">
+        <img src="{{ url_for('static', filename='images/fon/fon-book.png') }}" alt="" class="booking-decor" onerror="this.style.display='none'">
+        <!-- Левая визуальная часть -->
+        <div class="booking-visual">
+            <div class="booking-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LapkiVet"
+                     style="height: 36px; width: auto; filter: brightness(0) invert(1);">
+            </div>
+
+            <div class="booking-pets-circle">
+                <img src="{{ url_for('static', filename='images/pets/pet5.jpg') }}" alt="Питомец"
+                     class="pet-circle-img pet-dog">
+                <img src="{{ url_for('static', filename='images/pets/pet6.jpg') }}" alt="Питомец"
+                     class="pet-circle-img pet-cat">
+            </div>
+        </div>
+
+        <div class="booking-divider"></div>
+
+        <!-- Правая форма -->
+        <div class="booking-form-side">
+            <h2>Запишите своего питомца на приём</h2>
+            <p class="form-subtitle">Наш администратор свяжется с вами для согласования времени визита.</p>
+
+            <form id="appointmentFormIntegrated">
+                <div class="form-group">
+                    <input type="text" id="petOwnerNameIntegrated" name="ownerName" placeholder="Имя" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="phoneNumberIntegrated" name="phoneNumber" placeholder="Номер телефона" required>
+                </div>
+
+                <div class="form-group">
+                    <select id="serviceDirectionIntegrated" name="service">
+                        <option value="" disabled selected>Выберите направление услуги</option>
+                        <option value="Терапия">Терапия</option>
+                        <option value="Хирургия">Хирургия</option>
+                        <option value="Вакцинация">Вакцинация</option>
+                        <option value="Стоматология">Стоматология</option>
+                        <option value="УЗИ-диагностика">УЗИ-диагностика</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="appointmentDateIntegrated" name="preferredDate" placeholder="Выберите дату" required>
+                </div>
+
+                <div class="form-group checkbox-row">
+                    <input type="checkbox" id="privacyPolicyIntegrated" name="privacyConsent" required>
+                    <label for="privacyPolicyIntegrated">Я соглашаюсь с условиями политики конфиденциальности</label>
+                </div>
+
+                <button type="submit" class="btn-submit">Отправить</button>
+            </form>
+
+            <div id="formMessageIntegrated"></div>
+        </div>
+    </div>
+</section>
+
+
 <!-- КОНТАКТЫ -->
-<section class="section-contacts">
+<section id="contacts-section" class="section-contacts">
     <h2>Контакты клиники <span>LapkiVet</span></h2>
     <div class="contacts-grid">
         <div class="contact-card map-element">
@@ -281,8 +349,8 @@
     </div>
 
     <div class="footer-bottom">
-        <span>2024 Лапки-Вет</span>
-        <a href="#">Политика конфиденциальности</a>
+        <span>2024 ЛапкиВет</span>
+        <a>Политика конфиденциальности</a>
         <span>Разработка сайта</span>
     </div>
 </footer>
@@ -349,6 +417,71 @@
         }
     }
 
+    // Скрипт для формы записи
+    const form = document.getElementById('appointmentFormIntegrated');
+    const messageDiv = document.getElementById('formMessageIntegrated');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                ownerName: document.getElementById('petOwnerNameIntegrated').value.trim(),
+                phoneNumber: document.getElementById('phoneNumberIntegrated').value.trim(),
+                service: document.getElementById('serviceDirectionIntegrated').value,
+                preferredDate: document.getElementById('appointmentDateIntegrated').value,
+                privacyConsent: document.getElementById('privacyPolicyIntegrated').checked
+            };
+
+            if (!formData.ownerName || !formData.phoneNumber || !formData.service || !formData.preferredDate) {
+                showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+                return;
+            }
+
+            if (!formData.privacyConsent) {
+                showMessage('Необходимо согласие с политикой конфиденциальности', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/appointments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage(`✅ Спасибо, ${formData.ownerName}! Ваша заявка принята. Администратор свяжется с вами.`, 'success');
+                    form.reset();
+                } else {
+                    showMessage(result.error || 'Ошибка при отправке', 'error');
+                }
+            } catch (error) {
+                showMessage('Ошибка сети. Попробуйте позже.', 'error');
+            }
+        });
+    }
+
+
+    function showMessage(text, type) {
+        messageDiv.innerHTML = `<div class="form-message ${type}">${text}</div>`;
+        setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
+    }
+
+    // Установка минимальной даты (сегодня)
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('appointmentDateIntegrated');
+    if (dateInput) {
+        dateInput.min = today;
+    }
+
     document.addEventListener('DOMContentLoaded', () => new AutoImageSlider());
+
+
+
+
+
 </script>
 {% endblock %}
