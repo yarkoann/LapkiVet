@@ -47,7 +47,6 @@
             <div class="hero-menu-btn">
                 <span></span>
                 <span></span>
-                <span></span>
             </div>
         </div>
 
@@ -147,60 +146,67 @@
 <section id="services-section" class="section-services">
     <h2>Услуги и стоимость</h2>
     <div class="services-grid">
-        <!-- Row 1 -->
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-paw.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 1 000 РУБ.</div>
-            <div class="service-name">Паспорт. Чипирование.</div>
+      <!-- Row 1 -->
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-paw.png') }}" alt="icon">
+          <div class="service-price">ОТ 1 000 РУБ.</div>
         </div>
-        <div class="service-card has-photo">
-            <img src="{{ url_for('static', filename='images/pets/pet11.jpg') }}"
-                 onerror="this.src='https://images.unsplash.com/photo-1582797493098-23d8d62afe51?w=400&h=400&fit=crop'"
-                 alt="Питомец">
+        <div class="service-name">Паспорт. Чипирование.</div>
+      </div>
+
+      <div class="service-card has-photo">
+        <img src="{{ url_for('static', filename='images/pets/pet11.jpg') }}"
+             onerror="this.src='https://images.unsplash.com/photo-1582797493098-23d8d62afe51?w=400&h=400&fit=crop'"
+             alt="Питомец">
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-inj.png') }}" alt="icon">
+          <div class="service-price">ОТ 1 500 РУБ.</div>
         </div>
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-inj.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 1 500 РУБ.</div>
-            <div class="service-name">Вакцинация</div>
+        <div class="service-name">Вакцинация</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-cat.png') }}" alt="icon">
+          <div class="service-price">ОТ 1 680 РУБ.</div>
         </div>
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-cat.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 1 680 РУБ.</div>
-            <div class="service-name">Консультации специалистов</div>
+        <div class="service-name">Консультации специалистов</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-dog.png') }}" alt="icon">
+          <div class="service-price">ОТ 1 400 РУБ.</div>
         </div>
-        <!-- Row 2 -->
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-dog.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 1 400 РУБ.</div>
-            <div class="service-name">УЗИ-диагностика. МРТ. Рентген.</div>
+        <div class="service-name">УЗИ-диагностика. МРТ. Рентген.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-tube.png') }}" alt="icon">
+          <div class="service-price">ОТ 500 РУБ.</div>
         </div>
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-tube.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 500 РУБ.</div>
-            <div class="service-name">Анализы</div>
+        <div class="service-name">Анализы</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <img src="{{ url_for('static', filename='images/icons/icon-surg.png') }}" alt="icon">
+          <div class="service-price">ОТ 5 000 РУБ.</div>
         </div>
-        <div class="service-card">
-            <div>
-                <img src="{{ url_for('static', filename='images/icons/icon-surg.png') }}" alt="icon">
-            </div>
-            <div class="service-price">ОТ 5 000 РУБ.</div>
-            <div class="service-name">Хирургия. Кастрация/ стерилизация.</div>
-        </div>
-        <div class="service-card has-photo">
-            <img src="{{ url_for('static', filename='images/pets/pet1.jpg') }}"
-                 onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&h=400&fit=crop'"
-                 alt="Питомец">
-        </div>
+        <div class="service-name">Хирургия. Кастрация/ стерилизация.</div>
+      </div>
+
+      <div class="service-card has-photo">
+        <img src="{{ url_for('static', filename='images/pets/pet1.jpg') }}"
+             onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&h=400&fit=crop'"
+             alt="Питомец">
+      </div>
     </div>
 </section>
 
@@ -272,7 +278,7 @@
 <section id="contacts-section" class="section-contacts">
     <h2>Контакты клиники <span>LapkiVet</span></h2>
     <div class="contacts-grid">
-        <div class="contact-card map-element">
+        <div class="contact-card">
             <div>
                 <img src="{{ url_for('static', filename='images/icons/icon-place.png') }}" alt="Place">
             </div>
@@ -283,6 +289,9 @@
             <img src="{{ url_for('static', filename='images/map.jpg') }}" alt="Карта"
                  onerror="this.style.background='#d0d8f0';this.style.display='flex'">
         </div>
+
+
+
         <div class="contact-card">
             <div>
                 <img src="{{ url_for('static', filename='images/icons/icon-phone.png') }}" alt="Phone">
