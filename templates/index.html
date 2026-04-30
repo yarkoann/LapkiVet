@@ -116,7 +116,7 @@
 <section id="promo-section" class="section-promo">
     <div class="promo-header">
         <h2>Актуальные акции <strong>и специальные предложения</strong></h2>
-        <a href="/booking" class="btn-outline-white">Записаться на прием</a>
+        <a href="#booking-section" class="btn-outline-white">Записаться на прием</a>
     </div>
     <div class="promo-grid">
         <div class="promo-card">
@@ -379,6 +379,8 @@
     </div>
 </footer>
 
+<button class="scroll-to-top" id="scrollToTopBtn">▲</button>
+
 {% endblock %}
 
 {% block scripts %}
@@ -444,18 +446,136 @@
     // Скрипт для формы записи
     const form = document.getElementById('appointmentFormIntegrated');
     const messageDiv = document.getElementById('formMessageIntegrated');
+    const phoneInput = document.getElementById('phoneNumberIntegrated');
 
+    // Маска для телефона
+    if (phoneInput) {
+        let previousValue = '';
+        // При фокусе - ставим +7
+        phoneInput.addEventListener('focus', (e) => {
+            if (!e.target.value) {
+                e.target.value = '+7';
+                previousValue = '+7';
+            }
+        });
+
+        // Маска при вводе с правильной обработкой курсора
+        phoneInput.addEventListener('input', (e) => {
+            let input = e.target;
+            let value = input.value;
+            let cursorPos = input.selectionStart;
+
+            // Получаем только цифры
+            let numbers = value.replace(/\D/g, '');
+
+            // Если удалили всё - ставим +7
+            if (numbers.length === 0) {
+                input.value = '+7';
+                previousValue = '+7';
+                input.setSelectionRange(2, 2);
+                return;
+            }
+
+            // Ограничиваем максимум 11 цифр (+7 + 10 цифр)
+            if (numbers.length > 11) {
+                numbers = numbers.slice(0, 11);
+            }
+
+            // Форматируем номер
+            let formatted = '+7';
+
+            if (numbers.length > 1) {
+                formatted += ' (' + numbers.slice(1, Math.min(4, numbers.length));
+            }
+
+            if (numbers.length >= 4) {
+                formatted += ') ' + numbers.slice(4, Math.min(7, numbers.length));
+            }
+
+            if (numbers.length >= 7) {
+                formatted += '-' + numbers.slice(7, Math.min(9, numbers.length));
+            }
+
+            if (numbers.length >= 9) {
+                formatted += '-' + numbers.slice(9, 11);
+            }
+
+            // Вычисляем новую позицию курсора
+            let newCursorPos = cursorPos;
+
+            // Корректируем позицию в зависимости от добавленных символов
+            let oldRawLength = previousValue.replace(/\D/g, '').length;
+            let newRawLength = numbers.length;
+
+            if (newRawLength > oldRawLength) {
+                // Добавление символа
+                let addedCount = newRawLength - oldRawLength;
+                let prevFormattedLength = previousValue.length;
+                let newFormattedLength = formatted.length;
+
+                // Сдвигаем курсор на разницу в длине
+                newCursorPos = cursorPos + (newFormattedLength - prevFormattedLength);
+            } else if (newRawLength < oldRawLength) {
+                // Удаление символа - курсор остаётся на месте или сдвигается
+                newCursorPos = cursorPos;
+            }
+
+            // Применяем форматированное значение
+            input.value = formatted;
+            previousValue = formatted;
+
+            // Устанавливаем курсор с учётом границ
+            newCursorPos = Math.min(Math.max(newCursorPos, 2), formatted.length);
+            input.setSelectionRange(newCursorPos, newCursorPos);
+        });
+
+        // Обработка удаления
+        phoneInput.addEventListener('keydown', (e) => {
+            let input = e.target;
+            let cursorPos = input.selectionStart;
+            let value = input.value;
+
+            // Если нажали Backspace и курсор в начале
+            if (e.key === 'Backspace' && cursorPos <= 2 && value === '+7') {
+                e.preventDefault();
+                input.value = '';
+                previousValue = '';
+                return;
+            }
+
+            // Если нажали Delete и выделен весь текст
+            if (e.key === 'Delete' && input.selectionStart === 0 && input.selectionEnd === value.length) {
+                input.value = '';
+                previousValue = '';
+                e.preventDefault();
+            }
+        });
+    }
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+
+            // Очищаем номер от маски перед отправкой
+            let rawPhone = phoneInput.value.replace(/\D/g, '');
+            if (rawPhone.startsWith('7') && rawPhone.length === 11) {
+                rawPhone = '+' + rawPhone;
+            }
+
             const formData = {
                 ownerName: document.getElementById('petOwnerNameIntegrated').value.trim(),
-                phoneNumber: document.getElementById('phoneNumberIntegrated').value.trim(),
+                phoneNumber: rawPhone, // отправляем очищенный номер
                 service: document.getElementById('serviceDirectionIntegrated').value,
                 preferredDate: document.getElementById('appointmentDateIntegrated').value,
                 privacyConsent: document.getElementById('privacyPolicyIntegrated').checked
             };
+
+            // Валидация номера
+            if (!formData.phoneNumber || formData.phoneNumber.length < 11) {
+                showMessage('Введите корректный номер телефона', 'error');
+                return;
+            }
+
 
             if (!formData.ownerName || !formData.phoneNumber || !formData.service || !formData.preferredDate) {
                 showMessage('Пожалуйста, заполните все обязательные поля', 'error');
@@ -477,7 +597,7 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    showMessage(`✅ Спасибо, ${formData.ownerName}! Ваша заявка принята. Администратор свяжется с вами.`, 'success');
+                    showMessage(`Ваша заявка принята. Будем вас ждать, ${formData.ownerName}! `, 'success');
                     form.reset();
                 } else {
                     showMessage(result.error || 'Ошибка при отправке', 'error');
@@ -490,9 +610,32 @@
 
 
     function showMessage(text, type) {
-        messageDiv.innerHTML = `<div class="form-message ${type}">${text}</div>`;
-        setTimeout(() => {
+        const messageDiv = document.getElementById('formMessageIntegrated');
+
+        // Создаём центральное сообщение
+        let centerMessageDiv = document.querySelector('.center-form-message');
+
+        if (!centerMessageDiv) {
+            centerMessageDiv = document.createElement('div');
+            centerMessageDiv.className = `center-form-message ${type}`;
+            document.body.appendChild(centerMessageDiv);
+        }
+
+        centerMessageDiv.innerHTML = text;
+        centerMessageDiv.className = `center-form-message ${type}`;
+
+        // Очищаем старое сообщение внутри формы
+        if (messageDiv) {
             messageDiv.innerHTML = '';
+        }
+
+        setTimeout(() => {
+            centerMessageDiv.classList.add('fade-out');
+            setTimeout(() => {
+                if (centerMessageDiv) {
+                    centerMessageDiv.remove();
+                }
+            }, 300);
         }, 5000);
     }
 
@@ -504,6 +647,25 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => new AutoImageSlider());
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // Показываем/скрываем кнопку при прокрутке
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // если прокрутили больше 300px
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    // Плавный скролл наверх при клике
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 
 
 </script>
