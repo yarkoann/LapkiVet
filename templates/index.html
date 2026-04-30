@@ -14,22 +14,23 @@
             </div>
             <div class="nav-links">
                 <a href="#about-section">О клинике</a>
-                <a href="#promo-section" >Акции</a>
-                <a href="#services-section" >Услуги</a>
-                <a href="#contacts-section" >Контакты</a>
+                <a href="#promo-section">Акции</a>
+                <a href="#services-section">Услуги</a>
+                <a href="#contacts-section">Контакты</a>
             </div>
         </div>
 
         <div class="hero-content">
             <div class="address-tag">
                 <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
-                    <path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>
+                    <path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
+                          fill="currentColor"/>
                 </svg>
                 г. Санкт-Петербург, пр. Науки 17к2
             </div>
             <h1>Круглосуточная ветеринарная клиника</h1>
             <p>Высококачественная медицинская помощь для вашего питомца в дружелюбной и заботливой атмосфере.</p>
-            <a href="#booking-section"  class="btn-primary">Записаться на прием</a>
+            <a href="#booking-section" class="btn-primary">Записаться на прием</a>
         </div>
     </div>
 
@@ -73,14 +74,16 @@
 <!-- О КЛИНИКЕ -->
 <section id="about-section" class="section-about">
 
-    <img src="{{ url_for('static', filename='images/fon/fon-clinic.png') }}" alt="" class="clinic-decor" onerror="this.style.display='none'">
+    <img src="{{ url_for('static', filename='images/fon/fon-clinic.png') }}" alt="" class="clinic-decor"
+         onerror="this.style.display='none'">
 
 
     <div class="section-label">
         <img src="{{ url_for('static', filename='images/paw.png') }}" alt="Paw" style="height:16px;width:auto;">
         ВЕТЕРИНАРНАЯ КЛИНИКА С ДУШОЙ
     </div>
-    <h2>Забота о животных — это не только профессия, но и призвание. <strong>В нашей клинике созданы все условия для того, чтобы ваш питомец чувствовал себя как дома.</strong></h2>
+    <h2>Забота о животных — это не только профессия, но и призвание. <strong>В нашей клинике созданы все условия для
+        того, чтобы ваш питомец чувствовал себя как дома.</strong></h2>
     <p class="about-subtitle">Наш дружелюбный персонал с радостью окажет<br>любую помощь и поддержку.</p>
 
     <div class="stats-grid">
@@ -95,10 +98,14 @@
         <div class="stat-card">
             <div class="stat-num">&gt;30 ветеринаров</div>
             <div class="stat-avatars">
-                <img src="{{ url_for('static', filename='images/veterinarians/vet1.jpg') }}" alt="Vet 1" onerror="this.style.display='none'">
-                <img src="{{ url_for('static', filename='images/veterinarians/vet2.jpg') }}" alt="Vet 2" onerror="this.style.display='none'">
-                <img src="{{ url_for('static', filename='images/veterinarians/vet3.jpg') }}" alt="Vet 3" onerror="this.style.display='none'">
-                <img src="{{ url_for('static', filename='images/veterinarians/vet4.jpg') }}" alt="Vet 4" onerror="this.style.display='none'">
+                <img src="{{ url_for('static', filename='images/veterinarians/vet1.jpg') }}" alt="Vet 1"
+                     onerror="this.style.display='none'">
+                <img src="{{ url_for('static', filename='images/veterinarians/vet2.jpg') }}" alt="Vet 2"
+                     onerror="this.style.display='none'">
+                <img src="{{ url_for('static', filename='images/veterinarians/vet3.jpg') }}" alt="Vet 3"
+                     onerror="this.style.display='none'">
+                <img src="{{ url_for('static', filename='images/veterinarians/vet4.jpg') }}" alt="Vet 4"
+                     onerror="this.style.display='none'">
             </div>
             <div class="stat-desc">квалифицированные и опытные специалисты</div>
         </div>
@@ -118,7 +125,8 @@
                 <span class="promo-badge">−30%</span>
             </div>
             <h3>Первый прием 1&nbsp;680 руб. вместо <s>2&nbsp;400 руб.</s></h3>
-            <img src="{{ url_for('static', filename='images/fon/fon-cat2.png') }}" alt="" class="promo-animal" onerror="this.style.display='none'">
+            <img src="{{ url_for('static', filename='images/fon/fon-cat2.png') }}" alt="" class="promo-animal"
+                 onerror="this.style.display='none'">
             <a href="#" class="btn-more">Подробнее</a>
         </div>
         <div class="promo-card">
@@ -127,7 +135,8 @@
                 <span class="promo-badge">−15%</span>
             </div>
             <h3>Скидка на все услуги клиники</h3>
-            <img src="{{ url_for('static', filename='images/fon/fon-walk.png') }}" alt="" class="promo-animal-walk" onerror="this.style.display='none'">
+            <img src="{{ url_for('static', filename='images/fon/fon-walk.png') }}" alt="" class="promo-animal-walk"
+                 onerror="this.style.display='none'">
             <a href="#" class="btn-more">Подробнее</a>
         </div>
         <div class="promo-card">
@@ -136,7 +145,8 @@
                 <span class="promo-badge">−2&nbsp;200 руб.</span>
             </div>
             <h3>Узи сердца в подарок перед операцией под наркозом</h3>
-            <img src="{{ url_for('static', filename='images/fon/fon-dog2.png') }}" alt="" class="promo-animal" onerror="this.style.display='none'">
+            <img src="{{ url_for('static', filename='images/fon/fon-dog2.png') }}" alt="" class="promo-animal"
+                 onerror="this.style.display='none'">
             <a href="#" class="btn-more">Подробнее</a>
         </div>
     </div>
@@ -146,74 +156,75 @@
 <section id="services-section" class="section-services">
     <h2>Услуги и стоимость</h2>
     <div class="services-grid">
-      <!-- Row 1 -->
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-paw.png') }}" alt="icon">
-          <div class="service-price">ОТ 1 000 РУБ.</div>
+        <!-- Row 1 -->
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-paw.png') }}" alt="icon">
+                <div class="service-price">ОТ 1 000 РУБ.</div>
+            </div>
+            <div class="service-name">Паспорт. Чипирование.</div>
         </div>
-        <div class="service-name">Паспорт. Чипирование.</div>
-      </div>
 
-      <div class="service-card has-photo">
-        <img src="{{ url_for('static', filename='images/pets/pet11.jpg') }}"
-             onerror="this.src='https://images.unsplash.com/photo-1582797493098-23d8d62afe51?w=400&h=400&fit=crop'"
-             alt="Питомец">
-      </div>
-
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-inj.png') }}" alt="icon">
-          <div class="service-price">ОТ 1 500 РУБ.</div>
+        <div class="service-card has-photo">
+            <img src="{{ url_for('static', filename='images/pets/pet11.jpg') }}"
+                 onerror="this.src='https://images.unsplash.com/photo-1582797493098-23d8d62afe51?w=400&h=400&fit=crop'"
+                 alt="Питомец">
         </div>
-        <div class="service-name">Вакцинация</div>
-      </div>
 
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-cat.png') }}" alt="icon">
-          <div class="service-price">ОТ 1 680 РУБ.</div>
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-inj.png') }}" alt="icon">
+                <div class="service-price">ОТ 1 500 РУБ.</div>
+            </div>
+            <div class="service-name">Вакцинация</div>
         </div>
-        <div class="service-name">Консультации специалистов</div>
-      </div>
 
-      <!-- Row 2 -->
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-dog.png') }}" alt="icon">
-          <div class="service-price">ОТ 1 400 РУБ.</div>
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-cat.png') }}" alt="icon">
+                <div class="service-price">ОТ 1 680 РУБ.</div>
+            </div>
+            <div class="service-name">Консультации специалистов</div>
         </div>
-        <div class="service-name">УЗИ-диагностика. МРТ. Рентген.</div>
-      </div>
 
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-tube.png') }}" alt="icon">
-          <div class="service-price">ОТ 500 РУБ.</div>
+        <!-- Row 2 -->
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-dog.png') }}" alt="icon">
+                <div class="service-price">ОТ 1 400 РУБ.</div>
+            </div>
+            <div class="service-name">УЗИ-диагностика. МРТ. Рентген.</div>
         </div>
-        <div class="service-name">Анализы</div>
-      </div>
 
-      <div class="service-card">
-        <div class="service-header">
-          <img src="{{ url_for('static', filename='images/icons/icon-surg.png') }}" alt="icon">
-          <div class="service-price">ОТ 5 000 РУБ.</div>
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-tube.png') }}" alt="icon">
+                <div class="service-price">ОТ 500 РУБ.</div>
+            </div>
+            <div class="service-name">Анализы</div>
         </div>
-        <div class="service-name">Хирургия. Кастрация/ стерилизация.</div>
-      </div>
 
-      <div class="service-card has-photo">
-        <img src="{{ url_for('static', filename='images/pets/pet1.jpg') }}"
-             onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&h=400&fit=crop'"
-             alt="Питомец">
-      </div>
+        <div class="service-card">
+            <div class="service-header">
+                <img src="{{ url_for('static', filename='images/icons/icon-surg.png') }}" alt="icon">
+                <div class="service-price">ОТ 5 000 РУБ.</div>
+            </div>
+            <div class="service-name">Хирургия. Кастрация/ стерилизация.</div>
+        </div>
+
+        <div class="service-card has-photo">
+            <img src="{{ url_for('static', filename='images/pets/pet1.jpg') }}"
+                 onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&h=400&fit=crop'"
+                 alt="Питомец">
+        </div>
     </div>
 </section>
 
 <!-- ЗАПИСЬ ПИТОМЦА -->
 <section id="booking-section" class="section-booking-integrated">
     <div class="booking-integrated-card">
-        <img src="{{ url_for('static', filename='images/fon/fon-book.png') }}" alt="" class="booking-decor" onerror="this.style.display='none'">
+        <img src="{{ url_for('static', filename='images/fon/fon-book.png') }}" alt="" class="booking-decor"
+             onerror="this.style.display='none'">
         <!-- Левая визуальная часть -->
         <div class="booking-visual">
             <div class="booking-logo">
@@ -242,7 +253,8 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="tel" id="phoneNumberIntegrated" name="phoneNumber" placeholder="Номер телефона" required>
+                    <input type="tel" id="phoneNumberIntegrated" name="phoneNumber" placeholder="Номер телефона"
+                           required>
                 </div>
 
                 <div class="form-group">
@@ -257,7 +269,8 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="date" id="appointmentDateIntegrated" name="preferredDate" placeholder="Выберите дату" required>
+                    <input type="date" id="appointmentDateIntegrated" name="preferredDate" placeholder="Выберите дату"
+                           required>
                 </div>
 
                 <div class="form-group checkbox-row">
@@ -278,18 +291,18 @@
 <section id="contacts-section" class="section-contacts">
     <h2>Контакты клиники <span>LapkiVet</span></h2>
     <div class="contacts-grid">
-        <div class="contact-card">
-            <div>
+        <div class="contact-card address-with-map">
+            <!-- Левая часть: адрес -->
+            <div class="address-content">
                 <img src="{{ url_for('static', filename='images/icons/icon-place.png') }}" alt="Place">
+                <div class="contact-label-small">м. Академическая</div>
+                <div class="contact-value">г. Санкт-Петербург,<br>пр. Науки 17к2</div>
             </div>
-            <div class="contact-label-small">м. Академическая</div>
-            <div class="contact-value">г. Санкт-Петербург,<br>пр. Науки 17к2</div>
+            <!-- Правая часть: уменьшенная карта -->
+            <div class="map-content">
+                <img src="{{ url_for('static', filename='images/map.jpg') }}" alt="Карта">
+            </div>
         </div>
-        <div class="contact-card contact-map-card">
-            <img src="{{ url_for('static', filename='images/map.jpg') }}" alt="Карта"
-                 onerror="this.style.background='#d0d8f0';this.style.display='flex'">
-        </div>
-
 
 
         <div class="contact-card">
@@ -307,21 +320,23 @@
     </div>
     <div class="contacts-grid-row2">
         <div class="contact-card dark">
-            <div >
+            <div>
                 <img src="{{ url_for('static', filename='images/icons/icon-wats.png') }}" alt="WhatsApp">
             </div>
             <div class="contact-arrow-link">
-                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="→" onerror="this.outerHTML='<span style=\'color:white;font-size:1.2rem\'>↗</span>'">
+                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="→"
+                     onerror="this.outerHTML='<span style=\'color:white;font-size:1.2rem\'>↗</span>'">
 
             </div>
             <div class="contact-value" style="color:white">Написать<br>в What'sApp</div>
         </div>
         <div class="contact-card dark">
-            <div >
+            <div>
                 <img src="{{ url_for('static', filename='images/icons/icon-gram.png') }}" alt="Telegram">
             </div>
             <div class="contact-arrow-link">
-                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="→" onerror="this.outerHTML='<span style=\'color:white;font-size:1.2rem\'>↗</span>'">
+                <img src="{{ url_for('static', filename='images/arr.svg') }}" alt="→"
+                     onerror="this.outerHTML='<span style=\'color:white;font-size:1.2rem\'>↗</span>'">
 
             </div>
             <div class="contact-value" style="color:white">Написать<br>в Telegram</div>
@@ -455,7 +470,7 @@
             try {
                 const response = await fetch('/api/appointments', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(formData)
                 });
 
@@ -476,7 +491,9 @@
 
     function showMessage(text, type) {
         messageDiv.innerHTML = `<div class="form-message ${type}">${text}</div>`;
-        setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
+        setTimeout(() => {
+            messageDiv.innerHTML = '';
+        }, 5000);
     }
 
     // Установка минимальной даты (сегодня)
@@ -487,9 +504,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => new AutoImageSlider());
-
-
-
 
 
 </script>

@@ -785,11 +785,38 @@ body {
     color: var(--text-mid);
 }
 
+.contact-card.address-with-map {
+    grid-column: span 2;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    gap: 0;
+    min-height: unset;
+}
+
+.address-content {
+    flex: 1;
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.address-content img {
+    width: 40px;
+    height: 40px;
+}
+
+
 .contacts-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--col-gap);
 }
+
+
+
 
 .contacts-grid-row2 {
     display: grid;
@@ -840,14 +867,13 @@ body {
 /* Map card */
 
 
-
-.contact-map-card {
-    padding: 0;
+.map-content {
+    width: 50%;
     overflow: hidden;
-    background: #d0d8f0;
+    border-radius: var(--radius-md);
 }
 
-.contact-map-card img {
+.map-content img {
     width: 100%;
     height: 100%;
     object-fit: cover;
