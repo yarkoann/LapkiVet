@@ -58,5 +58,25 @@
     "privacyConsent": true,
     "createdAt": "2026-04-30T23:25:15.786244",
     "status": "new"
+  },
+  {
+    "id": 7,
+    "ownerName": "Тест",
+    "phoneNumber": "+79141001210",
+    "service": "Вакцинация",
+    "preferredDate": "2026-09-12",
+    "privacyConsent": true,
+    "createdAt": "2026-05-05T12:50:33.052742",
+    "status": "new"
+  },
+  {
+    "id": 8,
+    "ownerName": "Мария",
+    "phoneNumber": "+78745748343",
+    "service": "УЗИ-диагностика",
+    "preferredDate": "2027-06-10",
+    "privacyConsent": true,
+    "createdAt": "2026-05-05T13:07:47.354234",
+    "status": "new"
   }
 ]
